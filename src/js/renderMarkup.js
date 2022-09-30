@@ -1,7 +1,7 @@
 import { refs } from '../index';
 
 function renderCountry([{ name, capital, population, flags, languages }]) {
-  refs.counryList.innerHTML = '';
+  cleanMarkup();
   const capitalParse = capital.join(', ');
   const languagesParse = Object.values(languages).join(', ');
   let markup = `
@@ -17,7 +17,7 @@ function renderCountry([{ name, capital, population, flags, languages }]) {
 }
 
 function renderCountriesList(countries) {
-  refs.countryInfo.innerHTML = '';
+  cleanMarkup();
   let markup = countries
     .map(({ name, flags }) => {
       return `<li class="countries__item">
@@ -29,4 +29,9 @@ function renderCountriesList(countries) {
   refs.counryList.innerHTML = markup;
 }
 
-export { renderCountry, renderCountriesList };
+function cleanMarkup() {
+  refs.counryList.innerHTML = '';
+  refs.countryInfo.innerHTML = '';
+}
+
+export { renderCountry, renderCountriesList, cleanMarkup };
